@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 	<groupId>br.coffein.server</groupId>
-	<artifactId>CoffeIn</artifactId>
+	<artifactId>CoffeeIN</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CoffeIn</name>
 	<description>CoffeeIN Server</description>
