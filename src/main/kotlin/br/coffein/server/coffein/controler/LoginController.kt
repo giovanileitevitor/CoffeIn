@@ -1,10 +1,13 @@
 package br.coffein.server.coffein.controler
 
 import br.coffein.server.coffein.dto.request.LoginRequest
-import br.coffein.server.coffein.dto.request.NewUserRequest
+import br.coffein.server.coffein.dto.request.NewLoginRequest
 import br.coffein.server.coffein.dto.response.LoginResponse
 import br.coffein.server.coffein.service.LoginService
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
 @RestController
@@ -24,10 +27,10 @@ class LoginController(
 
     @PostMapping("/new")
     fun createLogin(
-        @RequestBody @Valid form: NewUserRequest
+        @RequestBody @Valid form: NewLoginRequest
     ): LoginResponse {
         return loginService.createLogin(
-            newUser = form
+            newLogin = form
         )
     }
 

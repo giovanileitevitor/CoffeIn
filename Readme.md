@@ -2,9 +2,9 @@
 
 APIs:
 - POST
-  - startLogin(TribeInCredential) : LoginResponse
+  - startLogin(LoginRequest) : LoginResponse
 - POST
-  - createLogin(TribeInUser) : LoginResponse
+  - createLogin(NewLoginRequest) : LoginResponse
 
 
 REPOSITORY:

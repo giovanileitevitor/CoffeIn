@@ -1,7 +1,7 @@
 package br.coffein.server.coffein.service
 
 import br.coffein.server.coffein.dto.request.LoginRequest
-import br.coffein.server.coffein.dto.request.NewUserRequest
+import br.coffein.server.coffein.dto.request.NewLoginRequest
 import br.coffein.server.coffein.dto.response.LoginResponse
 import br.coffein.server.coffein.model.Login
 import br.coffein.server.coffein.repository.LoginRepository
@@ -14,33 +14,36 @@ class LoginService(
 
     fun checkLogin(loginRequest: LoginRequest): LoginResponse{
         val users = loginRepository.findByEmail(loginRequest.email)
-        print("size: ${users.size}")
+
         return if(users.isNotEmpty()){
             LoginResponse(
                 validLogin = true,
                 email = loginRequest.email,
-                code = 200
+                code = 200,
+                obs = "TribeIN user found"
             )
         } else {
             LoginResponse(
                 validLogin = false,
                 email = loginRequest.email,
-                code = 404
+                code = 404,
+                obs = "TribeIN user not found"
             )
         }
     }
 
-    fun createLogin(newUser: NewUserRequest): LoginResponse{
+    fun createLogin(newLogin: NewLoginRequest): LoginResponse{
         val login = Login(
-            username = newUser.email,
-            email = newUser.email,
-            password = newUser.pass
+            username = newLogin.email,
+            email = newLogin.email,
+            password = newLogin.pass
         )
         loginRepository.save(login)
         return LoginResponse(
             validLogin = true,
-            email = newUser.email,
-            code = 201
+            email = newLogin.email,
+            code = 201,
+            obs = "TribeIN user created"
         )
     }
 }

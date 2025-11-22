@@ -8,9 +8,10 @@ data class LoginRequest(
 )
 
 
-data class NewUserRequest(
+data class NewLoginRequest(
     val email: String,
     val pass: String,
     val platform: String? = "Android",
-    val deviceID: String
+    val deviceID: String,
+    val baseLocation: String
 )
