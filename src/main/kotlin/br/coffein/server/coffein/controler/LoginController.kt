@@ -1,19 +1,10 @@
 package br.coffein.server.coffein.controler
 
-import br.coffein.server.coffein.dto.LoginResponse
+import br.coffein.server.coffein.dto.request.LoginRequest
+import br.coffein.server.coffein.dto.request.NewUserRequest
+import br.coffein.server.coffein.dto.response.LoginResponse
 import br.coffein.server.coffein.service.LoginService
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.util.UriComponentsBuilder
+import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
@@ -22,29 +13,40 @@ class LoginController(
     private val loginService: LoginService
 ) {
 
-    @GetMapping
-    fun startLogin(): LoginResponse{
-        return LoginResponse(
-            loginCode = 10,
-            loginName = "Giovani Leite Vitor",
-            loginEmail = "giovanileitevitor@gmail.com"
+    @PostMapping
+    fun startLogin(
+        @RequestBody @Valid form: LoginRequest
+    ): LoginResponse {
+       return loginService.checkLogin(
+           loginRequest = form
+       )
+    }
+
+    @PostMapping("/new")
+    fun createLogin(
+        @RequestBody @Valid form: NewUserRequest
+    ): LoginResponse {
+        return loginService.createLogin(
+            newUser = form
         )
     }
+
+//    @GetMapping
+//    fun startLogin(): LoginResponse{
+//        return LoginResponse(
+//            validLogin = true,
+//            code = 10,
+//            email = "giovanileitevitor@gmail.com"
+//        )
+//    }
+
 
 //    @GetMapping("/{id}")
 //    fun buscarPorId(@PathVariable id: Long): TopicoView {
 //        return service.buscarPorId(id)
 //    }
 //
-//    @PostMapping
-//    fun cadastrar(
-//        @RequestBody @Valid form: NovoTopicoForm,
-//        uriBuilder: UriComponentsBuilder
-//    ): ResponseEntity<TopicoView> {
-//        val topicoView = service.cadastrar(form)
-//        val uri = uriBuilder.path("/topicos/${topicoView.id}").build().toUri()
-//        return ResponseEntity.created(uri).body(topicoView)
-//    }
+//
 //
 //    @PutMapping
 //    fun atualizar(@RequestBody @Valid form: AtualizacaoTopicoForm): ResponseEntity<TopicoView> {
