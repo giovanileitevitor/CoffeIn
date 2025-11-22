@@ -7,8 +7,8 @@ APIs:
   - createLogin(TribeInUser) : LoginResponse
 
 
-Repository:
-https://github.com/giovanileitevitor/CoffeIn.git
+REPOSITORY:
+- https://github.com/giovanileitevitor/CoffeIn.git
 
 
 DB Type selected:
