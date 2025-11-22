@@ -30,7 +30,7 @@ class LoginController(
         @RequestBody @Valid form: NewLoginRequest
     ): LoginResponse {
         return loginService.createLogin(
-            newLogin = form
+            newUser = form
         )
     }
 

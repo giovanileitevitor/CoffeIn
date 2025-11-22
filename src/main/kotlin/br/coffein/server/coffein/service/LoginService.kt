@@ -14,36 +14,45 @@ class LoginService(
 
     fun checkLogin(loginRequest: LoginRequest): LoginResponse{
         val users = loginRepository.findByEmail(loginRequest.email)
-
-        return if(users.isNotEmpty()){
-            LoginResponse(
-                validLogin = true,
-                email = loginRequest.email,
-                code = 200,
-                obs = "TribeIN user found"
-            )
-        } else {
-            LoginResponse(
+        if (users.isNotEmpty()) {
+            val user = users.first()
+            if (user.password == loginRequest.pass) {
+                return LoginResponse(
+                    validLogin = true,
+                    email = loginRequest.email,
+                    code = 200,
+                    obs = "Login with success"
+                )
+            }
+        }else{
+            return LoginResponse(
                 validLogin = false,
                 email = loginRequest.email,
-                code = 404,
-                obs = "TribeIN user not found"
+                code = 400,
+                obs = "Email not found"
             )
         }
+
+        return LoginResponse(
+            validLogin = false,
+            email = loginRequest.email,
+            code = 404,
+            obs = "Login or Password invalid"
+        )
     }
 
-    fun createLogin(newLogin: NewLoginRequest): LoginResponse{
+    fun createLogin(newUser: NewLoginRequest): LoginResponse{
         val login = Login(
-            username = newLogin.email,
-            email = newLogin.email,
-            password = newLogin.pass
+            username = newUser.email,
+            email = newUser.email,
+            password = newUser.pass
         )
         loginRepository.save(login)
         return LoginResponse(
             validLogin = true,
-            email = newLogin.email,
+            email = newUser.email,
             code = 201,
-            obs = "TribeIN user created"
+            obs = "New User created with success"
         )
     }
 }
