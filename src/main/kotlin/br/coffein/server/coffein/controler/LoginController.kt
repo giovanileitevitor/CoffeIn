@@ -3,9 +3,7 @@ package br.coffein.server.coffein.controler
 import br.coffein.server.coffein.dto.request.LoginRequest
 import br.coffein.server.coffein.dto.request.NewLoginRequest
 import br.coffein.server.coffein.dto.response.LoginResponse
-import br.coffein.server.coffein.model.ApiDetails
 import br.coffein.server.coffein.service.LoginService
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
