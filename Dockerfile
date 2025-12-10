@@ -9,10 +9,10 @@ WORKDIR /app
 # Copia os arquivos de configuração do Gradle para o contêiner
 # Isso permite que o Gradle baixe as dependências no cache da imagem,
 # o que acelera builds subsequentes se os arquivos de configuração não mudarem.
-COPY gradlew .
-COPY gradle gradle
-COPY build.gradle.kts .
-COPY settings.gradle.kts .
+#COPY gradlew .
+#COPY gradle gradle
+#COPY build.gradle.kts .
+#COPY settings.gradle.kts .
 
 # Copia o código-fonte
 COPY src src
@@ -28,7 +28,7 @@ RUN ./gradlew clean build -x test
 
 # Define uma variável de ambiente com o caminho para o JAR compilado
 # Substitua 'seu-projeto' e '0.0.1-SNAPSHOT' pelos nomes reais do seu projeto
-ARG JAR_FILE=build/libs/seu-projeto-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=build/libs/CoffeeIN-0.0.1-SNAPSHOT.jar
 
 # 2. ESTÁGIO DE EXECUÇÃO (RUNTIME STAGE)
 # Usa uma imagem base JRE (Java Runtime Environment) menor para a aplicação final,
