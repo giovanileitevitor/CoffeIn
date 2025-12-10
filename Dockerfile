@@ -18,7 +18,7 @@ WORKDIR /app
 COPY src src
 
 # Dá permissão de execução ao gradlew
-RUN chmod +x gradlew
+#RUN chmod +x gradlew
 
 # Executa o build do projeto usando o wrapper do Gradle
 # 'clean build' compila, testa e gera o JAR
